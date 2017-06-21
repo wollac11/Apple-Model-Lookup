@@ -1,16 +1,26 @@
 #!/bin/bash
 
+# Requests serial from user
+req_serial() {
+	echo -n "Please enter Apple serial number: "
+	read serial
+}
+
 # Check if running on target machine
 read -r -p "Are we running on device in question? [y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY]) 
-		# Obtain serial from system
-		serial=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
-    ;;
+		# Verify machine is running OSX
+		if [[ "$OSTYPE" =~ darwin.* ]]; then
+			# Obtain serial from system
+			serial=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
+		else
+			echo "Not an OSX machine!"
+			req_serial
+		fi
+	;;
     *)
-		# Request serial from user
-		echo -n "Please enter Apple serial number: "
-		read serial
+		req_serial
     ;;
 esac
 
