@@ -22,7 +22,7 @@ case "$response" in
 			# Obtain serial from system
 			serial=$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')
 		else
-			echo "Not an OSX machine!"
+			echo "This is not a Mac!"
 			req_serial
 		fi
 	;;
