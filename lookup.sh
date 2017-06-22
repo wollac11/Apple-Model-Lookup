@@ -10,7 +10,7 @@ req_serial() {
 print_info() {
 	echo "------------------------
 -  Apple Model Lookup  -
--     Version 0.2      -
+-     Version 1.0      -
 -  C.W.A. Callow 2017  -
 ------------------------
 "
